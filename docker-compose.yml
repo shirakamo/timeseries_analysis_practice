@@ -1,0 +1,16 @@
+version: '3'
+services:
+  python:
+    restart: always
+    build:
+      context: .
+      args:
+        DOCKER_UID: ${DOCKER_UID}
+        DOCKER_USER: ${DOCKER_USER}
+        DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+    container_name: 'timeseries_analysis_practice'
+    tty: true
+    ports:
+      - ${HOST_PORT}:${CONTAINER_PORT}
+    volumes:
+      - ./:/home/${DOCKER_USER}/work
